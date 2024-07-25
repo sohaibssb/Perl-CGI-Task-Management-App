@@ -1,6 +1,7 @@
 use strict; 
 use warnings; 
 use CGI qw(:standard);
+use CGI::Carp 'fatalsToBrowser';
 require 'utils.pl';
 
 print header, start_html('Add Task');
@@ -11,7 +12,9 @@ if (param('title')) {
     my $due_data = param('due_data');
 
     my $tasks = read_tasks();
-    push @tasks, { title => $title, description => $description, due_data => $due_data, status => 'pending'};
+    my $id = @$tasks ? $tasks->[-1]->{id} + 1 : 1;
+    push @$tasks, { id => $id, title => $title, description => $description, due_date => $due_date, status => 'pending' };
+    write_tasks($tasks);
 
     print "Task added successfully!<br>";
 }

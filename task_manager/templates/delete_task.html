@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Task</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+    <h1>Delete Task</h1>
+    <p>Are you sure you want to delete the task: <span id="task-title"></span>?</p>
+    <form action="/cgi-bin/delete_task.pl" method="post">
+        <input type="hidden" name="id" id="task-id" value="">
+        <input type="submit" name="action" value="Delete">
+    </form>
+    <a href="/cgi-bin/view_tasks.pl">Back to task list</a>
+</body>
+</html>
